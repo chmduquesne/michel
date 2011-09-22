@@ -25,6 +25,9 @@ One line is one task. Indented lines are subtasks of the "parent" line.
 Installing
 ==========
 
+install python-xdg, then run
+    easy_install michel
+
 Author/License
 ==============
 
