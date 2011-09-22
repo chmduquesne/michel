@@ -26,7 +26,7 @@ def get_service():
     FLAGS = gflags.FLAGS
     FLOW = OAuth2WebServerFlow(
             client_id='617841371351.apps.googleusercontent.com',
-            client_secret='i5hU5w1Frj4RuLFTFLT5dRZw',
+            client_secret='_HVmphe0rqwxqSR8523M6g_g',
             scope='https://www.googleapis.com/auth/tasks',
             user_agent='michel/0.0.1')
     FLAGS.auth_local_webserver = False
