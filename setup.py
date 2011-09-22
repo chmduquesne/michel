@@ -10,9 +10,7 @@ setup(
     license='LICENSE.txt',
     description='pushes/pull flat text files to google tasks',
     long_description=open('README.md').read(),
-    install_requires = ['google-api-python-client', 'pyxdg'],
-    test_suite="nose.collector",
-    tests_require="nose",
+    install_requires = ['google-api-python-client'],
     entry_points=("""
     [console_scripts]
     michel = michel.michel:main
