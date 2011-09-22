@@ -36,7 +36,7 @@ Author/License
 --------------
 
 - License: Public Domain
-- Original author: Christophe-Marie Duquesne
+- Original author: Christophe-Marie Duquesne ([blog post](http://blog.chmd.fr/releasing-michel-a-flat-text-file-to-google-tasks-uploader.html))
 
 Contributing
 ------------
