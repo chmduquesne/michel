@@ -4,6 +4,9 @@ can push/pull flat text files to google tasks.
 Keeping it stupid simple
 ========================
 
+Usage
+-----
+
 Michel has only two commands:
 
     michel pull
