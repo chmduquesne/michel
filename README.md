@@ -28,8 +28,16 @@ Installing
 install python-xdg, then run
     easy_install michel
 
-Author/License
-==============
+About
+=====
 
-- Original author: Christophe-Marie Duquesne
+Author/License
+--------------
+
 - License: Public Domain
+- Original author: Christophe-Marie Duquesne
+
+Contributing
+------------
+
+As usual, patches are welcome.
