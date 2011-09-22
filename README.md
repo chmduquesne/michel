@@ -26,6 +26,7 @@ Installing
 ==========
 
 install python-xdg, then run
+
     easy_install michel
 
 About
