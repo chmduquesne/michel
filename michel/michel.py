@@ -22,6 +22,8 @@ def get_service():
     """
     Handle oauth's shit (copy-pasta from
     http://code.google.com/apis/tasks/v1/using.html)
+    Yes I do publish a secret key here, apparently it is normal
+    http://stackoverflow.com/questions/7274554/why-google-native-oauth2-flow-require-client-secret
     """
     FLAGS = gflags.FLAGS
     FLOW = OAuth2WebServerFlow(
