@@ -51,8 +51,8 @@ def print_todolist():
         else:
             level = 0
         levels[task['id']] = level
-        sys.stdout.write('\t'.join(['' for i in range(level + 1)]) +
-                task['title'] + '\n')
+        title = task['title'].encode('utf-8')
+        print('\t'.join(['' for i in range(level + 1)]) + title)
 
 def wipe_todolist():
     service = get_service()
