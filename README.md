@@ -1,13 +1,13 @@
 Michel is your friendly mate that helps you managing your todo list. It
 can push/pull flat text files to google tasks.
 
-Keeping it stupid simple
-========================
-
 Usage
------
+=====
 
-Michel has only two commands:
+Commands
+--------
+
+Michel keeps it stupid simple. It only has two commands:
 
     michel pull
 which prints the default todo list on the standard output
@@ -25,12 +25,48 @@ Syntax
 
 One line is one task. Indented lines are subtasks of the "parent" line.
 
+Suggestion
+----------
+
+Here is how michel can be used. A crontask pulls every 15 minutes the
+default TODO list:
+
+    */30 * * * * michel pull > ${HOME}/.TODO
+
+The following script is used to display a notification during 10 seconds every
+hour (requires notify-send - usually in a package called libnotify - and some
+notification-daemon - provided with most desktops)
+
+    #!/usr/bin/env bash
+    DISPLAY=:0.0
+    #params
+    todofile=$HOME/.TODO
+    icon='/usr/share/icons/gnome/32x32/status/dialog-information.png'
+    popupTime=10000
+    urgency='low'
+    if test -f $todofile; then
+        notification=`cat $todofile`
+        notify-send -u $urgency -t $popupTime -i "$icon" TODO "$notification"
+    fi
+
+Also called in a cron task, every hour:
+
+    1 * * * * todo.sh
+
+After you modify your TODO list, don't forget to push it!
+
+    michel push .TODO
+
 Installing
 ==========
 
 install python-xdg, then run
 
     easy_install michel
+
+or
+
+    pip install michel
 
 About
 =====
