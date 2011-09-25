@@ -29,29 +29,11 @@ Suggestion
 ----------
 
 Here is how michel can be used. A crontask pulls every 15 minutes the
-default TODO list:
+default TODO list, and another one displays a notification during 10
+seconds every hour (requires notify-send).
 
-    */30 * * * * michel pull > ${HOME}/.TODO
-
-The following script is used to display a notification during 10 seconds every
-hour (requires notify-send - usually in a package called libnotify - and some
-notification-daemon - provided with most desktops)
-
-    #!/usr/bin/env bash
-    DISPLAY=:0.0
-    #params
-    todofile=$HOME/.TODO
-    icon='/usr/share/icons/gnome/32x32/status/dialog-information.png'
-    popupTime=10000
-    urgency='low'
-    if test -f $todofile; then
-        notification=`cat $todofile`
-        notify-send -u $urgency -t $popupTime -i "$icon" TODO "$notification"
-    fi
-
-Also called in a cron task, every hour:
-
-    1 * * * * todo.sh
+    */15 * * * * michel pull > tmp/TODO && mv /tmp/TODO ~/.TODO
+    * * * * * DISPLAY=":0.0" notify-send -t 10000 TODO "$(cat ~/.TODO)"
 
 After you modify your TODO list, don't forget to push it!
 
