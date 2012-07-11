@@ -33,7 +33,7 @@ default TODO list, and another one displays a notification during 10
 seconds every hour (requires notify-send).
 
     */15 * * * * michel pull > /tmp/TODO && mv /tmp/TODO ~/.TODO
-    * * * * * DISPLAY=":0.0" notify-send -t 10000 TODO "$(cat ~/.TODO)"
+    0 * * * * DISPLAY=":0.0" notify-send -t 10000 TODO "$(cat ~/.TODO)"
 
 After you modify your TODO list, don't forget to push it!
 
