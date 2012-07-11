@@ -23,7 +23,8 @@ Michel aims at being simple: it does not handle due dates nor notes.
 Syntax
 ------
 
-One line is one task. Indented lines are subtasks of the "parent" line.
+One line is one task. tab-indented lines (with the real tab character)
+are subtasks of the "parent" line.
 
 Suggestion
 ----------
@@ -38,6 +39,10 @@ seconds every hour (requires notify-send).
 After you modify your TODO list, don't forget to push it!
 
     michel push .TODO
+
+If this trick is not working, it is probably because the variable PATH
+does not contains /usr/local/bin in crontab. You might want to set it
+manually. See 'man 5 crontab'.
 
 Installing
 ==========
