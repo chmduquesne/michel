@@ -36,7 +36,7 @@ class TasksTree():
                 if subtask.get(task_id) != None:
                     return subtask.get(task_id)
 
-    def add_subtask(self, title, task_id = None, parent_id = None):
+    def add_subtask(self, title, task_id=None, parent_id=None):
         """Adds a subtask to the tree"""
         if not parent_id:
             self.subtasks.append(TasksTree(title, task_id))
@@ -56,7 +56,7 @@ class TasksTree():
             if res:
                 return res
 
-    def push(self, service, list_id, parent = None, root=True):
+    def push(self, service, list_id, parent=None, root=True):
         """Pushes the task tree to the given list"""
         # We do not want to push the root node
         if not root:
@@ -65,20 +65,18 @@ class TasksTree():
                 args['parent'] = parent
             res = service.tasks().insert(**args).execute()
             self.task_id = res['id']
-        # the API head inserts, so we insert in reverse.
+        # the API inserts head-first, so we insert in reverse.
         for subtask in reversed(self.subtasks):
             subtask.push(service, list_id, parent=self.task_id, root=False)
 
     def _lines(self, level):
         """Returns the sequence of lines of the string representation"""
         res = []
+        if level > 0:
+            res = [ '\t'.join(['' for i in range(level)]) + self.title ]
         for subtask in self.subtasks:
-            indentations = '\t'.join(['' for i in range(level + 1)])
-            res.append(indentations + subtask.title)
-            subtasks_lines = subtask._lines(level + 1)
-            res += subtasks_lines
+            res.extend(subtask._lines(level + 1))
         return res
-
 
     def __str__(self):
         """string representation of the tree"""
@@ -113,7 +111,9 @@ def print_todolist(list_id):
     tasks_tree = TasksTree()
     tasklist = [t for t in tasks.get('items', [])]
     fail_count = 0
-    while tasklist != [] and fail_count < 1000 :
+    # we might get nodes of the tree in any order.
+    # worst case: we fail n**2 times
+    while tasklist != [] and fail_count < len(tasklist)**2 :
         t = tasklist.pop(0)
         try:
             tasks_tree.add_subtask(t['title'].encode('utf-8'), t['id'], t.get('parent'))
