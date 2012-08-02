@@ -19,7 +19,15 @@ import os.path
 import sys
 
 class TasksTree():
-    """Tree for holding tasks"""
+    """
+    Tree for holding tasks
+
+    A TasksTree:
+    - is a task (except the root, which just holds the list)
+    - has subtasks
+    - may have a task_id
+    - may have a title
+    """
 
     def __init__(self, title=None, task_id=None):
         """init"""
@@ -37,7 +45,11 @@ class TasksTree():
                     return subtask.get(task_id)
 
     def add_subtask(self, title, task_id = None, parent_id = None):
-        """Adds a subtask to the tree"""
+        """
+        Adds a subtask to the tree
+        - with the specified task_id
+        - as a child of parent_id
+        """
         if not parent_id:
             self.subtasks.append(TasksTree(title, task_id))
         else:
