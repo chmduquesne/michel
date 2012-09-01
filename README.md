@@ -4,16 +4,25 @@ can push/pull flat text files to google tasks.
 Usage
 =====
 
+Configuration
+-------------
+
+At the first run, you will be prompted an url. Click it, authorize michel.
+You're done!
+
+The authorization token is stored in $XDG_DATA_HOME/michel/oauth.dat. This
+is the only information stored.
+
 Commands
 --------
 
 Michel keeps it stupid simple. It only has two commands:
 
     michel pull
-which prints the default todo list on the standard output
+Print the default todo list on the standard output
 
     michel push <TODO.txt>
-which replaces the default todo list with the content of TODO.txt
+Replace the default todo list with the content of TODO.txt
 
 Non features
 ------------
@@ -26,8 +35,8 @@ Syntax
 One line is one task. tab-indented lines (with the real tab character)
 are subtasks of the "parent" line.
 
-Suggestion
-----------
+How to
+------
 
 Here is how michel can be used. A crontask pulls every 15 minutes the
 default TODO list, and another one displays a notification during 10
@@ -49,10 +58,6 @@ Installing
 
 install python-xdg, then run
 
-    easy_install michel
-
-or
-
     pip install michel
 
 About
@@ -67,4 +72,4 @@ Author/License
 Contributing
 ------------
 
-As usual, patches are welcome.
+Patches are welcome, as long as they keep the source simple and short.
